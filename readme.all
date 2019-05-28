@@ -74,5 +74,35 @@ docker rm 4e811ec3b1f9
 
 
 
+Case 8: use one stage with shell script to compile code, build image, build service, build deployment, deploy to Minikube.
+      One stage to compile code, build image, create service, create deployment
+5/27/2019
+$ minikube start
+$ minikube dashboard   //Gateway Timeout(504)
+
+//create pipeline
+//run gocd dashboard
+http://localhost:8153/go/admin/pipeline
+Step1 Basic Settings:
+Pipeline Name: rest-example-minikube
+Pipeline Group Name: development            
+
+Step2 Materials:
+Material Type: Git
+URL: https://github.com/sliu99/rest-example-minikube.git
+
+Step3 stage/Job:
+Stage Name: BuildAndDeployStage
+
+Job Name: build_and_deploy_job
+Task Type: More
+Command: /bin/sh
+Arguments: build_deploy_minikube.sh
+
+
+
+
+
+
 
 
